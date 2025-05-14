@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest  # Use the GitHub-hosted runner to run Docker container
 
     container:
-      image: mcr.microsoft.com/playwright:v1.43.1-focal  # Playwright Docker image
+      image: mcr.microsoft.com/playwright:v1.52.0-focal  # Playwright Docker image
 
     strategy:
       matrix:
