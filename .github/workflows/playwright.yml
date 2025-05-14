@@ -1,0 +1,30 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main  # Trigger for pushes to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger for pull requests to the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the GitHub-hosted runner to run Docker container
+
+    container:
+      image: mcr.microsoft.com/playwright:v1.43.1-focal  # Playwright Docker image
+
+    strategy:
+      matrix:
+        shard: [1/2, 2/2]  # Shard your tests into 2 parts
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Get the code
+
+      - name: Install dependencies
+        run: npm ci  # Install dependencies
+
+      - name: Run Playwright tests (Shard ${{ matrix.shard }})
+        run: npx playwright test --shard=${{ matrix.shard }}  # Run the specific shard
