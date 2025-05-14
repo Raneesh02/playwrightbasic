@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest  # Use the GitHub-hosted runner to run Docker container
 
     container:
-      image: docker pull mcr.microsoft.com/playwright
+      image: docker pull mcr.microsoft.com/playwright:v1.52.0-noble
 
     strategy:
       matrix:
